@@ -42,9 +42,9 @@ No contexto do sistema de apostas descentralizado, o Ganache foi utilizado para 
 ### 2.4 Truffle
 
 O Truffle é um framework de desenvolvimento para Ethereum que facilita a criação, teste e implantação de contratos inteligentes. Ele oferece uma suíte de ferramentas que automatizam o processo de desenvolvimento, proporcionando uma integração perfeita com a Ethereum Virtual Machine (EVM) e a rede Ganache. O Truffle oferece:
-- Truffle Suite: Um conjunto de ferramentas que inclui o Truffle (para gerenciamento de contratos), o Ganache (para teste local), e o Drizzle (para integração front-end).
-- Gerenciamento de contratos: O Truffle facilita o processo de compilar, migrar e interagir com contratos inteligentes, tornando o desenvolvimento mais ágil.
-- Testes automatizados: A plataforma oferece suporte a testes de contratos inteligentes em diversos cenários, permitindo validar o funcionamento do sistema antes da implantação em uma rede pública.
+- **Truffle Suite:** Um conjunto de ferramentas que inclui o Truffle (para gerenciamento de contratos), o Ganache (para teste local), e o Drizzle (para integração front-end).
+- **Gerenciamento de contratos:** O Truffle facilita o processo de compilar, migrar e interagir com contratos inteligentes, tornando o desenvolvimento mais ágil.
+- **Testes automatizados:** A plataforma oferece suporte a testes de contratos inteligentes em diversos cenários, permitindo validar o funcionamento do sistema antes da implantação em uma rede pública.
 Com o Truffle, foi possível desenvolver e testar a plataforma de apostas descentralizada de forma eficiente, validando a lógica dos contratos inteligentes e realizando os testes necessários para garantir a segurança e a precisão do sistema.
 
 ### 2.5 Solidity
