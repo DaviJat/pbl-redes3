@@ -65,6 +65,7 @@ Além disso, a imunidade à fraude é uma característica importante de sistemas
 ### 2.7 Odds Dinâmicas
 
 As odds dinâmicas referem-se ao ajuste dos valores das apostas com base no comportamento do mercado, ou seja, o número de apostadores em cada possível resultado de um evento. A fórmula de cálculo para as odds leva em consideração o número de apostas em cada alternativa, de forma que as odds se ajustem automaticamente para equilibrar os riscos e as recompensas, garantindo que o sistema seja lucrativo para os administradores e justo para os apostadores.
+
 A implementação de odds dinâmicas no sistema envolve a coleta de dados em tempo real sobre as apostas realizadas e a recalibração das odds sempre que um novo apostador realiza uma aposta. A lógica para esse cálculo é definida nos contratos inteligentes, que executam o ajuste de forma transparente e automática, garantindo a imparcialidade e confiabilidade do sistema.
 
 ### 2.8 Sistemas Distribuídos
