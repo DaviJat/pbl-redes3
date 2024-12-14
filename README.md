@@ -87,9 +87,9 @@ O sistema de apostas descentralizado foi projetado com uma arquitetura cliente-s
 
 A arquitetura do sistema pode ser dividida nas seguintes camadas:
 
-- Camada de Interface (Cliente): Embora a interface de usuário não seja o foco do relatório, ela serve como um meio para que os usuários interajam com o sistema. Ela se comunica com a camada de contratos inteligentes na blockchain, enviando transações e recuperando dados sobre apostas, odds e resultados.
-- Camada de Contratos Inteligentes: Esta camada contém a lógica de negócios que gerencia as apostas, cálculos das odds e distribuições dos prêmios. Os contratos inteligentes são programados em Solidity e executados na Ethereum Virtual Machine (EVM), que é responsável pela execução segura e determinística do código.
-- Camada de Blockchain: Esta camada é composta pela rede Ethereum, que registra todas as transações de apostas de forma imutável. A blockchain garante a integridade dos dados, impedindo qualquer alteração ou manipulação.
+- **Camada de Interface (Cliente):** Embora a interface de usuário não seja o foco do relatório, ela serve como um meio para que os usuários interajam com o sistema. Ela se comunica com a camada de contratos inteligentes na blockchain, enviando transações e recuperando dados sobre apostas, odds e resultados.
+- **Camada de Contratos Inteligentes:** Esta camada contém a lógica de negócios que gerencia as apostas, cálculos das odds e distribuições dos prêmios. Os contratos inteligentes são programados em Solidity e executados na Ethereum Virtual Machine (EVM), que é responsável pela execução segura e determinística do código.
+- **Camada de Blockchain:** Esta camada é composta pela rede Ethereum, que registra todas as transações de apostas de forma imutável. A blockchain garante a integridade dos dados, impedindo qualquer alteração ou manipulação.
 
 ### 3.2. Contratos Inteligentes (ChainCodes) e algoritmos
 
@@ -123,43 +123,93 @@ A segurança do sistema é garantida pela blockchain e pelos contratos inteligen
 
 O sistema foi desenvolvido e testado utilizando o ambiente local de Ganache para simular a blockchain. Com isso, foi possível verificar o correto funcionamento dos contratos inteligentes, o cálculo das odds e a execução das transações. Além disso, a plataforma foi submetida a testes para avaliar a segurança das interações, a correção dos cálculos e a integridade das transações registradas na blockchain.
 
+## 4. Resultados
 
+Na execução deste sistema, foram realizados diversos testes e experimentos para avaliar o desempenho, a funcionalidade e a segurança da plataforma. Os testes cobriram diferentes aspectos do sistema, incluindo o registro de apostas, o cálculo das odds dinâmicas, a distribuição dos prêmios e a performance geral do sistema na blockchain. A seguir, detalhamos o que foi realizado e os resultados obtidos.
 
-## 3. Discussão e Resultados
+### 4.1. Testes e Experimentos
 
-### 3.1 Resultados dos Testes
-O teste de exclusão mútua (teste_exclusao_mutua.py) foi conduzido para avaliar como o sistema lida com várias tentativas de compra simultâneas para o mesmo trecho. Os resultados demonstraram que o sistema respeita o número máximo de passagens disponíveis: das 12 tentativas de compra simuladas, 10 foram concluídas com sucesso, enquanto as demais foram bloqueadas quando as passagens se esgotaram. Esse resultado confirma que o sistema consegue gerenciar de maneira eficaz a concorrência e evitar reservas duplicadas, garantindo que cada trecho só seja vendido até o limite permitido.
-### 3.2 Casos de Erro e Tratamento de Conflitos
-O sistema foi projetado para lidar de forma confiável com falhas nas reservas. Quando uma tentativa de compra não é concluída, seja por falta de passagens ou por outros motivos, o trecho é rapidamente liberado para que outros clientes possam tentar reservá-lo. Esse mecanismo assegura que falhas temporárias ou erros de transação não deixem o trecho bloqueado de forma permanente, o que permite uma experiência de uso estável e contínua para todos os clientes.
-### 3.3 Desempenho e Escalabilidade
-A arquitetura do sistema facilita a adição de novos servidores e permite que o sistema cresça conforme aumenta o número de companhias e de clientes. Esse modelo modular ajuda a manter um desempenho consistente, mesmo com um volume crescente de transações. Com essa estrutura, o sistema se mostra bem adaptado para suportar uma expansão gradual e confiável, à medida que novas companhias se conectam à rede.
-### 3.4 Limitações e Melhorias Futuras
-Um ponto a ser melhorado é a questão da latência, que pode ser percebida quando há um grande volume de requisições simultâneas ou quando os servidores estão geograficamente distantes. Como aprimoramento futuro, o sistema poderia incluir um monitoramento mais detalhado das transações e do uso do sistema, o que ajudaria na auditoria e facilitaria ajustes para reduzir possíveis atrasos. Esse tipo de otimização garantiria que o sistema permaneça ágil e confiável à medida que a demanda aumente.
+Os testes foram realizados em um ambiente local usando o Ganache, uma ferramenta que simula uma rede blockchain privada, permitindo a criação de uma rede Ethereum local para desenvolvimento e testes. O Truffle foi utilizado como framework para o desenvolvimento e automação dos testes de contratos inteligentes.
 
-## 4. Conclusão
-### 4.1 Resumo dos Pontos Principais
-Este projeto demonstrou a viabilidade de um sistema distribuído de reserva de trechos entre companhias aéreas, com controle de concorrência e preservação da preferência de reserva. A arquitetura RESTful e o isolamento em containers Docker conferem ao sistema a flexibilidade necessária para operar em uma rede descentralizada, proporcionando uma solução robusta e escalável.
+#### 4.1.1. Testes de Registro de Apostas
 
-### 4.2 Validade da Solução
-Os testes comprovaram que o sistema é capaz de lidar com múltiplas requisições simultâneas, mantendo a exclusão mútua e a prioridade de atendimento ao cliente que iniciou a compra primeiro. Essa abordagem se mostrou confiável e pronta para aplicação em um ambiente real, garantindo que a concorrência entre clientes seja resolvida de forma justa e eficiente.
+Para verificar se o sistema de apostas estava funcionando corretamente, realizamos uma série de testes de registro de apostas. foi possível realizar apostas em um evento específico (como o lançamento de uma moeda). O sistema foi configurado para registrar essas apostas no contrato inteligente responsável. Durante os testes, verificamos se o valor e a opção escolhida pelo usuário estavam sendo corretamente armazenados na blockchain.
 
-### 4.3 Aprendizados em Programação e Redes
-O desenvolvimento deste projeto proporcionou um aprendizado significativo sobre programação distribuída e redes, especialmente na integração de serviços independentes em um sistema coeso. A implementação do Algoritmo de Lamport ajudou a compreender na prática a importância de técnicas de controle de concorrência em ambientes distribuídos, onde a ausência de um servidor central exige uma coordenação cuidadosa entre múltiplos nós. Além disso, o uso de contêineres Docker reforçou conhecimentos em deploy de aplicações e gestão de dependências, essenciais para sistemas escaláveis e isolados. A arquitetura RESTful possibilitou uma melhor compreensão dos desafios e vantagens da comunicação sem estado, permitindo que cada servidor funcione de forma independente, mas integrado com os demais.
-A configuração dos servidores de forma distribuída também destacou a importância da estabilidade da rede e dos protocolos de comunicação. Compreender a maneira como os dados trafegam entre servidores e lidar com potenciais atrasos ou falhas de rede aumentou a familiaridade com redes de computadores e o impacto da latência em aplicações reais. Esse aprendizado prático forneceu uma visão aprofundada dos desafios comuns em sistemas distribuídos e da importância de uma boa arquitetura de rede para evitar gargalos e conflitos.
+#### 4.1.2. Cálculo das Odds Dinâmicas
 
-## 5. Referências
-PYTHON Software Foundation. Python documentation: socket — Low-level networking interface. Disponível em: https://docs.python.org/3/library/socket.html. Acesso em: out. 2024.
+Em seguida, realizamos testes para verificar o funcionamento do cálculo dinâmico das odds. Variamos o número de apostadores e os valores apostados em diferentes opções de um evento. O sistema deveria ajustar as odds automaticamente com base nas apostas registradas, garantindo que a opção com mais apostas tivesse uma odd menor e a opção com menos apostas tivesse uma odd maior. Testamos isso em múltiplos cenários e verificamos se o cálculo estava correto e em tempo real.
 
-Grinberg, M. Flask Documentation. Flask, Pallets Projects, https://flask.palletsprojects.com/en/latest/. Acesso em: out. 2024.
+#### 4.1.3. Distribuição de Prêmios
 
-DOCKER INC. O que é Docker?. Disponível em: https://www.docker.com/what-docker. Acesso em: out. 2024.
+Após o encerramento do evento, realizamos o teste de distribuição dos prêmios. O contrato inteligente deveria calcular automaticamente o valor dos prêmios com base nas odds e distribuir os fundos para os vencedores. Para isso, criamos diferentes cenários de vitória (onde um apostador ou vários acertavam o resultado) e testamos a execução do contrato para garantir que os valores corretos fossem transferidos para as carteiras dos usuários.
 
-FABRICIO VERONEZ. Docker do zero ao compose: Parte 01. Disponível em: https://www.youtube.com/watch?v=GkMJJkWRgBQ. Acesso em: out. 2024.
+#### 4.1.4. Desempenho e Escalabilidade
 
-PYTHON Software Foundation. pickle — Python object serialization. Disponível em: https://docs.python.org/3/library/pickle.html. Acesso em: out. 2024.
+Os testes de desempenho foram realizados para verificar como o sistema se comportava com um número crescente de transações. Como o sistema foi desenvolvido para ser utilizado em uma rede blockchain pública, a análise de escalabilidade foi focada no tempo de resposta das transações e no custo de gas para cada operação realizada. Foram simulados cenários com múltiplos usuários realizando apostas simultâneas, e o tempo de confirmação das transações foi monitorado.
 
-RODRIGUES, Douglas. A Evolução da Internet: Desde os Primórdios até os Dias Atuais. YouTube, 28 out. 2023. Disponível em: https://www.youtube.com/watch?v=DaPHo_VFccg. Acesso em: nov. 2024.
+### 4.2. Resultados Obtidos
 
-RODRIGUES, Douglas. Inovações Tecnológicas: O Futuro das Comunicações Digitais. YouTube, 29 out. 2023. Disponível em: https://www.youtube.com/watch?v=EmcWq_DvqcA. Acesso em: nov. 2024.
+Os testes realizados apresentaram os seguintes resultados:
 
-FERNANDES, Luiz Gustavo Leão. Algoritmos Distribuídos. Pontifícia Universidade Católica do Rio Grande do Sul. Disponível em: https://www.inf.pucrs.br/gustavo/disciplinas/ppd/material/slides-algos_distr-novo.pdf. Acesso em: nov. 2024.
+#### 4.2.1. Registro de Apostas Funcional
+
+As apostas foram registradas corretamente no contrato inteligente, com a quantidade e a opção escolhida pelo usuário armazenadas de forma transparente e imutável na blockchain. Não houve falhas de integridade durante o processo de registro de apostas, e as informações foram acessíveis de forma correta após a confirmação da transação.
+
+#### 4.2.2. Cálculo das Odds Dinâmicas
+
+O cálculo das odds foi feito corretamente, e as odds ajustaram-se automaticamente conforme o número de apostas e os valores apostados nas diferentes opções do evento. Em eventos com grandes variações no volume de apostas, o sistema conseguiu ajustar as odds de forma eficiente, mantendo a lógica dinâmica esperada.
+
+#### 4.2.3.Distribuição de prêmios
+
+A distribuição dos prêmios também ocorreu sem falhas. Os contratos inteligentes calcularam o valor dos prêmios com base nas odds e nas apostas realizadas, e os fundos foram transferidos para as carteiras dos vencedores de forma automática e sem intervenção manual. Isso garantiu que o processo fosse transparente e sem erros.
+
+#### 4.2.4. Desempenho
+
+Embora o sistema tenha funcionado bem para um número reduzido de transações, a performance começou a ser impactada quando o número de apostas simultâneas aumentou. O tempo de confirmação das transações na blockchain aumentou conforme o volume de apostas cresceu, e o custo de gas (taxa de transação) também foi elevado em cenários com muitas apostas simultâneas. Embora o sistema tenha continuado operando corretamente, a escalabilidade e os custos de transação precisam ser otimizados para garantir que a plataforma seja viável para um número elevado de usuários em um ambiente de produção.
+
+### 4.3. Falhas
+
+Embora o sistema tenha cumprido com grande parte de seus objetivos, algumas falhas foram identificadas durante os testes:
+
+#### 4.3.1. Escalabilidade e Custo de Gas
+
+Um dos principais problemas observados foi relacionado à escalabilidade. Em cenários com muitos usuários e apostas simultâneas, o tempo de confirmação das transações na blockchain foi maior, o que resultou em um atraso na atualização dos saldos dos usuários e na finalização dos eventos. Além disso, o custo de gas aumentou significativamente, tornando as transações caras quando o volume de usuários e apostas cresceu. Essa questão precisa ser resolvida por meio de técnicas como caching de resultados ou a utilização de redes de segunda camada, como o Polygon, para reduzir o custo de gas.
+
+#### 4.3.2. Problema de Conectividade
+
+Em alguns testes, houve uma falha na conectividade entre os nós da rede privada do Ganache. Embora a rede tenha funcionado corretamente durante a maioria dos testes, essa desconexão esporádica impediu que as transações fossem propagadas entre os nós, o que causou inconsistências nos dados exibidos para os usuários. Este problema foi atribuído a configurações de rede no ambiente de teste e não deve ocorrer em um ambiente de produção, mas ainda assim aponta para a necessidade de uma melhor configuração e teste de redes distribuídas.
+
+#### 4.3.3. Limitações de Usabilidade
+
+Embora o sistema tenha funcionado de forma técnica, a usabilidade da plataforma poderia ser aprimorada. A interface de interação com os contratos inteligentes, principalmente no contexto de uma blockchain pública, precisa ser mais intuitiva, pois pode se tornar difícil para alguns usuários entenderem como realizar apostas ou como visualizar o histórico de apostas. A experiência do usuário deve ser simplificada para garantir uma adoção mais ampla.
+
+### 4.4. Melhorias Futuras
+Apesar das falhas observadas, os testes demonstraram que o sistema é funcional e tem grande potencial. Visando aumentar o projeto futuramente as implementações futuras seriam:
+
+- **Otimização de desempenho: **focando na melhoria da escalabilidade para suportar um número maior de transações.
+- **Refinamento da experiência do usuário:** Melhoria na interface, aumento da sincronização das odds e eventos em tempo real.
+- **Implementação de um oráculo:** um oráculo é um sistema que fornece dados do mundo real para um contrato inteligente ou plataforma de apostas, alimentando-a com informações externas e verificáveis. Esse "oráculo" coleta dados como gols, faltas, resultados de eventos e outros dados relevantes, para que as casas de apostas ou sistemas automatizados possam tomar decisões ou ajustar as odds em tempo real.
+
+## 5. Conclusão
+
+O desenvolvimento do sistema de apostas descentralizado foi realizado com o objetivo de criar uma plataforma transparente, segura e sem intermediários, utilizando a tecnologia de blockchain e contratos inteligentes. O sistema foi implementado utilizando as ferramentas Ganache, Truffle e Solidity, que permitiram o desenvolvimento, teste e execução de contratos inteligentes em uma rede Ethereum local.
+Durante o processo, foram realizados testes abrangentes, incluindo o registro de apostas, o cálculo dinâmico das odds e a distribuição automática dos prêmios aos vencedores. A plataforma foi capaz de registrar apostas corretamente, calcular odds de forma dinâmica com base no volume de apostas, e distribuir os prêmios de maneira justa e automatizada. A segurança e a imutabilidade dos dados foram garantidas pelo uso de blockchain, assegurando que todas as transações fossem registradas de forma transparente e não alterável.
+No entanto, algumas áreas do sistema precisam de melhorias, principalmente em relação à escalabilidade. Embora o sistema tenha funcionado adequadamente com um número limitado de transações, o desempenho da plataforma sofreu um pequeno impacto quando testado com múltiplas transações simultâneas. A otimização para suportar uma maior carga de usuários e transações será um ponto importante para as futuras versões do sistema.
+
+### 5.1. Reflexões sobre o Aprendizado Adquirido
+
+O desenvolvimento do sistema proporcionou um profundo aprendizado sobre blockchain e contratos inteligentes, tecnologias essenciais para a criação de sistemas descentralizados. A utilização do Ganache e do Truffle foi fundamental para a criação de um ambiente controlado de testes, permitindo a validação dos contratos inteligentes e o desempenho das transações. A experiência também proporcionou um entendimento detalhado sobre os desafios e benefícios de usar Ethereum para implementar soluções descentralizadas, especialmente no que diz respeito à imunidade à fraude, transparência e segurança.
+Outro aprendizado importante foi a compreensão da dinâmica das odds e como ela pode ser aplicada em sistemas de apostas para garantir um equilíbrio financeiro e justo entre os participantes. O desenvolvimento e a implementação do cálculo dinâmico das odds com base no volume de apostas foi um desafio interessante e forneceu uma compreensão mais profunda da matemática por trás dos sistemas de apostas.
+
+### 5.2. Aplicabilidade do Aprendizado Futuro
+
+O conhecimento adquirido pode ser empregado em diversas outras áreas que utilizam blockchain e contratos inteligentes. A experiência adquirida pode ser aplicada na criação de plataformas financeiras descentralizadas, como deFi (finanças descentralizadas), sistemas de votação eletrônica seguros, ou até mesmo na gestão de contratos de seguros. Além disso, a aplicação de blockchain para garantir transparência e segurança em transações financeiras pode ser ampliada para outros setores, como o mercado imobiliário ou gestão de supply chain.
+
+Em termos técnicos, a experiência adquirida também pode ser utilizada para otimizar o desempenho e a escalabilidade de blockchains públicas. Melhorias na forma de lidar com múltiplas transações simultâneas podem ser aplicadas em sistemas de maior escala, tornando a tecnologia mais acessível e viável para uso em plataformas com um grande número de usuários.
+
+Em suma, o aprendizado obtido ao desenvolver este sistema de apostas descentralizado oferece uma base sólida para explorar outras soluções baseadas em blockchain, contribuindo para a evolução de plataformas mais seguras, transparentes e eficientes em diversos contextos.
+
+## 6. Referências
+- ETHEREUM FOUNDATION. Ethereum: The World Computer. Disponível em: https://ethereum.org/en/. Acesso em: 12 dez. 2024.
+- GANACHE. Ganache: Local Blockchain for Ethereum Development. Disponível em: https://www.trufflesuite.com/ganache. Acesso em: 10 dez. 2024.
+- TRUFFLE SUITE. Truffle: The Ethereum Development Environment. Disponível em: https://www.trufflesuite.com/truffle. Acesso em: 10 dez. 2024.
