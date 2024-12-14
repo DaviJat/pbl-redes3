@@ -1,6 +1,6 @@
 # Desenvolvimento de um Sistema de Apostas Descentralizado Utilizando Blockchain e Contratos Inteligentes
 
-** Davi Jatobá Galdino, Gabriel Sena Barbosa **
+**Davi Jatobá Galdino, Gabriel Sena Barbosa**
 
 Universidade Estadual de Feira de Santana (UEFS)
 Av. Transnordestina, s/n, Novo Horizonte - BA, 44036-900
