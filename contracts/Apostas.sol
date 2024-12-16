@@ -7,8 +7,6 @@ contract Apostas {
         address criador;
         string nome;
         uint resultado; // 0 - Não resolvido, 1 - Cara, 2 - Coroa
-        mapping(address => uint) apostas; // Mapeia o endereço do apostador para o valor da aposta
-        mapping(address => bool) apostadorCorreto; // Mapeia os apostadores corretos
     }
 
     mapping(uint => Evento) public eventos;
@@ -21,5 +19,20 @@ contract Apostas {
         novoEvento.criador = msg.sender;
         novoEvento.nome = _nome;
         novoEvento.resultado = 0; // Inicializa como "não resolvido"
+    }
+
+    // Função para mostrar todos os eventos criados
+    function mostrarEventos() public view returns (string[] memory nomes, address[] memory criadores, uint[] memory resultados) {
+        string[] memory _nomes = new string[](eventoCount);
+        address[] memory _criadores = new address[](eventoCount);
+        uint[] memory _resultados = new uint[](eventoCount);
+        
+        for (uint i = 1; i <= eventoCount; i++) {
+            _nomes[i - 1] = eventos[i].nome;
+            _criadores[i - 1] = eventos[i].criador;
+            _resultados[i - 1] = eventos[i].resultado;
+        }
+
+        return (_nomes, _criadores, _resultados);
     }
 }

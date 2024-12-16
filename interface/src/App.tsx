@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import './App.css'
-import { criarEvento } from './web3/web3'
+import { criarEvento, mostrarEventos } from './web3/web3'
 import Button from '@mui/material/Button';
 
 function App() {
 useEffect(() => {
-  console.log('teste')
+  mostrarEventos();
 }, [])
 
   return (
@@ -13,7 +13,7 @@ useEffect(() => {
     <div>
       <p>Hello, World!!</p>
       <Button onClick={() => {
-        criarEvento()
+        criarEvento(nome_evento, conta_cliente)
       }}>
         TESTE
       </Button>
